@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Form2Object</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+
+		<form>
+			<input type="hidden" name="userId" value="3" />
+			<input type="text" name="name" value="Pelle Larsson" />
+			<input type="number" name="age" value="33" />
+			<input type="date" name="birthdate" value="1984-10-24" />
+			<input type="radio" name="sex" value="female" />
+			<input type="radio" name="sex" value="male" checked />
+			<input type="checkbox" name="interests" value="skiing" checked />
+			<input type="checkbox" name="interests" value="walking" />
+			<input type="checkbox" name="interests" value="coding" checked />
+			<input type="checkbox" name="interests" value="base-jumping" checked />
+
+			<select name="favoriteAnimal">
+				<option value="dog">Dog</option>
+				<option value="cat">Cat</option>
+				<option value="crocodile">Crocodile</option>
+			</select>
+
+			<select name="favoriteColors" multiple>
+				<option value="red" selected>Red</option>
+				<option value="green">Green</option>
+				<option value="blue" selected>Blue</option>
+			</select>
+
+			<textarea name="description">Really nice person from Örebro</textarea>
+
+			<button type="submit">Skicka!</button>
+		</form>
+
+
+
+		<script src="form2object.js"></script>
+		<script>
+
+			var correct = {
+				userId: "3",
+				name: "Pelle Larsson",
+				age: 33,
+				birthdate: "1984-10-24",
+				sex: "male",
+				interests: ['skiing', 'coding', 'base-jumping'],
+				favoriteAnimal: "dog",
+				favoriteColors: ["red","blue"],
+				description: "Really nice person from Örebro"
+			};
+
+			var form = document.forms[0];
+			form.addEventListener("submit", submit);
+
+			function submit(e) {
+				e.preventDefault();
+				var data = form2object(form);
+				console.log("Data: ", data);
+				console.log("Correct: ", correct);
+				console.log("Correct data", JSON.stringify(correct) === JSON.stringify(data));
+			}
+		</script>
+	</body>
+</html>
